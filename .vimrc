@@ -6,6 +6,10 @@ set tabstop=4
 set autoindent
 set shiftwidth=4
 set softtabstop=4
+" It will be good to see whever I use spaces or tabs
+set listchars=eol:$,tab:>-
+set list
+set hlsearch
 map <F5> :w!<CR>:make %<CR>
 map <F6> :copen<CR>
 map <F2> :NERDTreeToggle<CR>
