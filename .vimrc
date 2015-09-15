@@ -1,3 +1,5 @@
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+    \ | wincmd p | diffthis
 se nu
 colorscheme elflord
 syntax on
@@ -9,7 +11,6 @@ set softtabstop=4
 " It will be good to see whever I use spaces or tabs
 set listchars=eol:$,tab:>-
 set list
-set hlsearch
 map <F5> :w!<CR>:make %<CR>
 map <F6> :copen<CR>
 map <F2> :NERDTreeToggle<CR>
