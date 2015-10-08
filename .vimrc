@@ -3,6 +3,8 @@ command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 se nu
 colorscheme elflord
 syntax on
+filetype on
+au BufNewFile,BufRead *.j2 setf jinja
 set expandtab
 set tabstop=4
 set autoindent
@@ -26,4 +28,3 @@ let g:pymode_rope_complete_on_dot = 1
 " Always display statusline
 set laststatus=2
 nmap <leader>n :NERDTree<cr>
-
