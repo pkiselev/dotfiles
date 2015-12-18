@@ -6,10 +6,11 @@ syntax on
 filetype on
 au BufNewFile,BufRead *.j2 setf jinja
 set expandtab
-set tabstop=4
 set autoindent
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set mouse=a
 " It will be good to see whever I use spaces or tabs
 set listchars=eol:$,tab:>-
 set list
