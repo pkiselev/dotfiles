@@ -24,6 +24,7 @@ let g:airline_theme='wombat'
 """"""""""""""""""""""
 " Hotkeys
 """"""""""""""""""""""
+let mapleader = ","
 nmap <leader>1 :NERDTree<cr>
 map <leader>2 :NERDTreeToggle<CR>
 map <leader>3 :TlistToggle<CR>
@@ -54,6 +55,5 @@ set listchars=eol:$,tab:>-
 set list
 set modeline
 " autocmd VimEnter * NERDTree
-let mapleader = ","
 " Always display statusline
 set laststatus=2
