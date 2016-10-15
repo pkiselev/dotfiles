@@ -7,19 +7,25 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'https://github.com/klen/python-mode.git'
-Plugin 'https://github.com/vim-scripts/taglist.vim'
+"Plugin 'https://github.com/vim-scripts/taglist.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'https://github.com/majutsushi/tagbar'
 call vundle#end()            
 filetype plugin indent on    
 
 """"""""""""""""""""""
-" Plugin specific settings
+" Pymode
 """"""""""""""""""""""
-let g:pymode_python = 'python3'
+"let g:pymode_python = 'python3'
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
 let g:airline_theme='wombat'
+
+"""""""""""""""""""""
+" Tagbar 
+"""""""""""""""""""""
+let g:tagbar_left = 1
 
 """"""""""""""""""""""
 " Hotkeys
@@ -27,7 +33,7 @@ let g:airline_theme='wombat'
 let mapleader = ","
 nmap <leader>1 :NERDTree<cr>
 map <leader>2 :NERDTreeToggle<CR>
-map <leader>3 :TlistToggle<CR>
+map <leader>3 :TagbarToggle<CR>
 set pastetoggle=<leader>4
 map <leader>5 :w!<CR>:make %<CR>
 map <leader>6 :copen<CR>
