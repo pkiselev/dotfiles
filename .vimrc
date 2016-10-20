@@ -20,7 +20,6 @@ let g:pymode_python = 'python'
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
 let g:airline_theme='wombat'
-let g:pymode_doc = 0 " Disable help popups
 
 """"""""""""""""""""""
 " Hotkeys
@@ -59,3 +58,4 @@ set modeline
 " autocmd VimEnter * NERDTree
 " Always display statusline
 set laststatus=2
+set completeopt=menu " To disable help popups in pymode
