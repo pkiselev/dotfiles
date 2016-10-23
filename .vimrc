@@ -25,12 +25,11 @@ let g:airline_theme='wombat'
 " Hotkeys
 """"""""""""""""""""""
 let mapleader = ","
-nmap <leader>1 :NERDTree<cr>
-map <leader>2 :NERDTreeToggle<CR>
-map <leader>3 :TlistToggle<CR>
-set pastetoggle=<leader>4
-map <leader>5 :w!<CR>:make %<CR>
-map <leader>6 :copen<CR>
+map <leader>1 :NERDTreeToggle<CR>
+map <leader>2 :TlistToggle<CR>
+set pastetoggle=<leader>3
+map <leader>4 :w!<CR>:make %<CR>
+map <leader>5 :copen<CR>
 map = <C-W>+
 map - <C-W>-
 
