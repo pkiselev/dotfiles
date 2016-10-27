@@ -58,3 +58,8 @@ set modeline
 " Always display statusline
 set laststatus=2
 set completeopt=menu " To disable help popups in pymode
+set ts=8 et sw=4 sts=4 " Will use python-like settings by default
+set cursorline
+set cursorcolumn
+hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
+hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
