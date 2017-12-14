@@ -10,6 +10,8 @@ Plugin 'https://github.com/klen/python-mode.git'
 Plugin 'https://github.com/vim-scripts/taglist.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'https://github.com/Shougo/neocomplete.vim'
+Plugin 'https://github.com/tomasr/molokai'
 call vundle#end()            
 filetype plugin indent on    
 
@@ -20,6 +22,7 @@ let g:pymode_python = 'python'
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
 let g:airline_theme='wombat'
+let g:neocomplete#enable_at_startup = 1
 
 """"""""""""""""""""""
 " Hotkeys
@@ -39,7 +42,8 @@ map - <C-W>-
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
 se nu
-colorscheme elflord
+"colorscheme elflord
+colorscheme molokai
 syntax on
 filetype on
 au BufNewFile,BufRead *.j2 setf jinja
