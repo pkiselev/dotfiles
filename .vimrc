@@ -13,6 +13,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/Shougo/neocomplete.vim'
 Plugin 'https://github.com/tomasr/molokai'
 Plugin 'https://github.com/tpope/vim-fugitive'
+Plugin 'https://github.com/vim-scripts/AutoComplPop'
 call vundle#end()            
 filetype plugin indent on    
 
@@ -22,7 +23,7 @@ filetype plugin indent on
 let g:pymode_python = 'python'
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
-let g:airline_theme='wombat'
+let g:airline_theme='molokai'
 let g:neocomplete#enable_at_startup = 1
 
 """"""""""""""""""""""
