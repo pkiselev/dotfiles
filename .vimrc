@@ -12,6 +12,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/Shougo/neocomplete.vim'
 Plugin 'https://github.com/tomasr/molokai'
+Plugin 'https://github.com/tpope/vim-fugitive'
 call vundle#end()            
 filetype plugin indent on    
 
