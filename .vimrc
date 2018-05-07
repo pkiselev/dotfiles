@@ -26,9 +26,9 @@ filetype plugin indent on
 "let g:pymode_rope_completion = 1
 ""let g:pymode_rope_lookup_project = 0
 "let g:pymode_rope_complete_on_dot = 1
-let g:airline_theme='wombat'
+let g:airline_theme='molokai'
 let g:neocomplete#enable_at_startup = 0
-let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 1
 
 
 """"""""""""""""""""""
@@ -67,11 +67,15 @@ set list
 set modeline
 " autocmd VimEnter * NERDTree
 " Always display statusline
+set hlsearch
 set laststatus=2
 set completeopt=menu " To disable help popups in pymode
 set ts=8 et sw=4 sts=4 " Will use python-like settings by default
 set cursorline
 set cursorcolumn
 set omnifunc=syntaxcomplete#Complete
+set textwidth=79
+set colorcolumn=80
+set nowrap
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
