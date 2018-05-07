@@ -56,9 +56,9 @@ filetype on
 au BufNewFile,BufRead *.j2 setf jinja
 set expandtab
 set autoindent
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
 set mouse=a
 set foldcolumn=3
 " It will be good to see whever I use spaces or tabs
@@ -68,12 +68,13 @@ set modeline
 " autocmd VimEnter * NERDTree
 " Always display statusline
 set hlsearch
+set isk+=- " It is useful for searching in route-maps to incl dash
 set laststatus=2
-set completeopt=menu " To disable help popups in pymode
+"set completeopt=menu " To disable help popups in pymode
 set ts=8 et sw=4 sts=4 " Will use python-like settings by default
 set cursorline
 set cursorcolumn
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 set textwidth=79
 set colorcolumn=80
 set nowrap
