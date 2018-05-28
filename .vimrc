@@ -78,5 +78,7 @@ set cursorcolumn
 set textwidth=79
 set colorcolumn=80
 set nowrap
+set undofile
+set undodir=~/.vim_undodir " Persistent undo
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
