@@ -12,10 +12,13 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/tomasr/molokai'
 Plugin 'https://github.com/tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'https://github.com/ervandew/supertab'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'kien/ctrlp.vim'
 "Plugin 'https://github.com/klen/python-mode.git'
 "Plugin 'https://github.com/Shougo/neocomplete.vim'
 "Plugin 'https://github.com/davidhalter/jedi-vim'
-"Plugin 'https://github.com/ervandew/supertab'
 call vundle#end()            
 filetype plugin indent on    
 
@@ -23,6 +26,7 @@ filetype plugin indent on
 " Plugin specific settings
 """"""""""""""""""""""
 let g:airline_theme='molokai'
+let python_highlight_all=1
 "let g:pymode_python = 'python'
 ""let g:pymode_rope = 0
 "let g:pymode_rope_completion = 1
@@ -62,6 +66,8 @@ set expandtab
 set autoindent
 set mouse=a
 set foldcolumn=3
+set foldmethod=indent
+set foldlevel=99
 set listchars=eol:$,tab:>- " It will be good to see whever I use spaces or tabs
 set list
 set modeline
