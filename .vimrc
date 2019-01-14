@@ -56,13 +56,12 @@ syntax on
 filetype on
 
 set ts=8 et sw=4 sts=4 " Will use python-like settings by default
-set number
+set number relativenumber
 set textwidth=79
 set colorcolumn=80
 set nowrap
 set undofile
 set undodir=~/.vim_undodir " Persistent undo
-set expandtab
 set autoindent
 set mouse=a
 set foldcolumn=3
@@ -72,6 +71,7 @@ set listchars=eol:$,tab:>- " It will be good to see whever I use spaces or tabs
 set list
 set modeline
 set hlsearch
+set incsearch
 set isk+=- " It is useful for searching in route-maps to incl dash
 set laststatus=2
 set cursorline
