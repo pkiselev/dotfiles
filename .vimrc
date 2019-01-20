@@ -21,12 +21,15 @@ Plugin 'kien/ctrlp.vim'
 "Plugin 'https://github.com/davidhalter/jedi-vim'
 call vundle#end()            
 filetype plugin indent on    
+filetype plugin on
+
 
 """"""""""""""""""""""
 " Plugin specific settings
 """"""""""""""""""""""
 let g:airline_theme='molokai'
 let python_highlight_all=1
+let g:ctrlp_split_window = 0
 "let g:pymode_python = 'python'
 ""let g:pymode_rope = 0
 "let g:pymode_rope_completion = 1
