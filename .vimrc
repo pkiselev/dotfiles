@@ -6,12 +6,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'https://github.com/vim-scripts/taglist.vim'
+"Plugin 'https://github.com/vim-scripts/taglist.vim'
+Plugin 'https://github.com/majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/tomasr/molokai'
 Plugin 'https://github.com/tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'https://github.com/ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
@@ -44,12 +45,14 @@ let g:ctrlp_split_window = 0
 """"""""""""""""""""""
 let mapleader = ","
 map <leader>1 :NERDTreeToggle<CR>
-map <leader>2 :TlistToggle<CR>
+map <leader>2 :TagbarToggle<CR>
 set pastetoggle=<leader>3
 map <leader>4 :w!<CR>:make %<CR>
 map <leader>5 :copen<CR>
 map = <C-W>+
 map - <C-W>-
+nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>b :TagbarToggle<cr>
 
 """"""""""""""""""""""
 " Settings
