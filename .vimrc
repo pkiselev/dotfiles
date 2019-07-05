@@ -6,20 +6,23 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'https://github.com/vim-scripts/taglist.vim'
 Plugin 'https://github.com/majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/tomasr/molokai'
 Plugin 'https://github.com/tpope/vim-fugitive'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'https://github.com/ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
-Plugin 'kien/ctrlp.vim'
+Plugin 'https://github.com/junegunn/fzf.vim'
+Plugin 'https://github.com/benmills/vimux'
+Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'https://github.com/klen/python-mode.git'
 "Plugin 'https://github.com/Shougo/neocomplete.vim'
 "Plugin 'https://github.com/davidhalter/jedi-vim'
+"Plugin 'https://github.com/vim-scripts/taglist.vim'
+Plugin 'kien/ctrlp.vim'
 call vundle#end()            
 filetype plugin indent on    
 filetype plugin on
@@ -29,8 +32,13 @@ filetype plugin on
 " Plugin specific settings
 """"""""""""""""""""""
 let g:airline_theme='molokai'
+let g:airline#extensions#tabline#enabled = 1 " show open buffers
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf = 0
 let python_highlight_all=1
-let g:ctrlp_split_window = 0
+set rtp+=/usr/local/opt/fzf
+"let g:ycm_autoclose_preview_window_after_completio = 1
+"let g:ctrlp_split_window = 0
 "let g:pymode_python = 'python'
 ""let g:pymode_rope = 0
 "let g:pymode_rope_completion = 1
@@ -51,7 +59,10 @@ map <leader>4 :w!<CR>:make %<CR>
 map <leader>5 :copen<CR>
 map = <C-W>+
 map - <C-W>-
-nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>. :CtrlPBufTagAll<cr>
+nnoremap <leader>jd :YcmCompleter GoTo<CR> 
+"nnoremap <leader>jt :YcmCompleter GetType<CR>
+nnoremap <leader>jt :YcmCompleter GetTypeImprecise<CR>
 nnoremap <leader>b :TagbarToggle<cr>
 
 """"""""""""""""""""""
@@ -82,6 +93,10 @@ set isk+=- " It is useful for searching in route-maps to incl dash
 set laststatus=2
 set cursorline
 set cursorcolumn
+set noswapfile
+set splitbelow
+set splitright
+set completeopt-=preview " I dont need annoying preview window with YCM
 " autocmd VimEnter * NERDTree
 "set omnifunc=syntaxcomplete#Complete
 "set completeopt=menu " To disable help popups in pymode
