@@ -16,6 +16,11 @@ Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'plasticboy/vim-markdown'
+Plug 'benmills/vimux'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'tpope/vim-surround'
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
@@ -27,13 +32,21 @@ let g:airline_theme='gruvbox'
 let g:airline_section_y="" " Disable filetype
 let g:airline_section_warning=""
 let g:airline#extensions#tabline#enabled = 1 " show open buffers
+let g:tagbar_foldlevel = 0
 set rtp+=/usr/local/opt/fzf
 let g:fzf_preview_command = 'bat'
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+let b:ale_linters = ['flake8', 'pylint', 'pyls']
+let b:ale_fixers = ['autopep8', 'yapf']
+let g:ale_completion_enabled = 1
+let g:mkdp_browser = 'safari'
+
 
 
 " Keys
 let mapleader = ","
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 map <leader>1 :NERDTreeToggle<CR>
 map <leader>2 :TagbarToggle<CR>
 map <leader>4 :w!<CR>:make %<CR>
@@ -58,6 +71,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+:tnoremap et <C-\><C-n>
 
 " Plugin-specific keys
 nnoremap <leader>gd :ALEGoToDefinition<CR>
@@ -69,8 +83,10 @@ nnoremap <leader>gs :ALESymbolSearch <cword> <CR>
 " Settings
 """"""""""""""""""""""
 colorscheme gruvbox
+set bg=dark " Specifically for gruvbox I prefer dark bg
 syntax on
 filetype on
+set tags+=tags;/
 set ts=8 et sw=4 sts=4 " Will use python-like settings by default
 set number relativenumber
 set textwidth=79
