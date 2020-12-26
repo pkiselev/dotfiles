@@ -1,6 +1,6 @@
 " Plugins
 call plug#begin()
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
@@ -21,6 +21,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'benmills/vimux'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
@@ -45,26 +46,27 @@ let g:mkdp_browser = 'safari'
 
 
 " Keys
-let mapleader = ","
+let mapleader = " "
 " let g:deoplete#enable_at_startup = 1
-map <leader>1 :NERDTreeToggle<CR>
+"map <leader>1 :NERDTreeToggle<CR>
 map <leader>2 :TagbarToggle<CR>
 map <leader>4 :w!<CR>:make %<CR>
 map <leader>5 :copen<CR>
-map = <C-W>+
-map - <C-W>-
+"map = <C-W>+
+"map - <C-W>-
 
 nnoremap <leader>B :TagbarToggle<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>l :Lines<CR>
-nnoremap <leader>ag :Ag<CR>
+nnoremap <leader>g :Ag<CR>
 
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
+inoremap jk <Esc>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
