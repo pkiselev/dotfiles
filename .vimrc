@@ -6,6 +6,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tomasr/molokai'
 Plug 'nvie/vim-flake8'
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'chriskempson/base16-vim'
@@ -16,16 +17,21 @@ Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+"Plug 'davidhalter/jedi-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'plasticboy/vim-markdown'
 Plug 'benmills/vimux'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'voldikss/vim-floaterm'
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
-source ~/.vim/cscope_maps.vim
+"source ~/.vim/cscope_maps.vim
 
 
 " Plugin specific settings
@@ -38,16 +44,23 @@ set rtp+=/usr/local/opt/fzf
 let g:fzf_preview_command = 'bat'
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-let b:ale_linters = ['flake8', 'pylint', 'pyls']
-let b:ale_fixers = ['autopep8', 'yapf']
-let g:ale_completion_enabled = 1
+let b:ale_linters = {'python': ['flake8', 'pylint', 'pyls']}
+let g:ale_fixers = {'python': ['yapf', 'autopep8']}
+"let g:ale_completion_enabled = 1
 let g:mkdp_browser = 'safari'
+
+" Respect colorscheme for GitMessenger
+hi link gitmessengerPopupNormal Pmenu
+hi gitmessengerPopupNormal term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
+hi gitmessengerEndOfBuffer term=None guifg=None guibg=10 ctermfg=None ctermbg=None
+
+" Tons of configs for CoC
+source $HOME/.config/nvim/plug-config/coc.vim
 
 
 
 " Keys
 let mapleader = " "
-" let g:deoplete#enable_at_startup = 1
 "map <leader>1 :NERDTreeToggle<CR>
 map <leader>2 :TagbarToggle<CR>
 map <leader>4 :w!<CR>:make %<CR>
@@ -60,25 +73,37 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>l :Lines<CR>
-nnoremap <leader>g :Ag<CR>
+nnoremap <leader>ag :Ag<CR>
 
+cnoremap <Left> <nop>
+cnoremap <Right> <nop>
+cnoremap <Up> <nop>
+cnoremap <Left> <nop>
+
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Left> <nop>
+
+noremap <Down> <nop>
+noremap <Right> <nop>
 noremap <Up> <nop>
 noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-inoremap jk <Esc>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+inoremap jk <Esc>
+inoremap <Esc> <nop>
+
 :tnoremap et <C-\><C-n>
 
 " Plugin-specific keys
-nnoremap <leader>gd :ALEGoToDefinition<CR>
-nnoremap <leader>gr :ALEFindReferences<CR>
-nnoremap <leader>gs :ALESymbolSearch <cword> <CR>
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+nmap <silent> <leader>t  :FloatermNew<cr>
 
 
 """"""""""""""""""""""
@@ -121,39 +146,22 @@ hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 
 
 " Commands
-command! -bang -nargs=? -complete=dir Files
- \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"command! -bang -nargs=? -complete=dir Files
+ "\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+"command! -bang -nargs=* Ag
+  "\ call fzf#vim#ag(<q-args>,
+  "\                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  "\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  "\                 <bang>0)
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+"command! -bang -nargs=* Rg
+  "\ call fzf#vim#grep(
+  "\   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  "\   <bang>0 ? fzf#vim#with_preview('up:60%')
+  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  "\   <bang>0)
 
- "cscope and fzf (shameless copy from https://alex.dzyoba.com/blog/vim-revamp/
-"function! Cscope(option, query)
-  "let color = '{ x = $1; $1 = "s"; c = $3; $3 = ""; printf "\033[34m%s\033[0m:\033[31m%s\033[0m\011\033[37m%s\033[0m\n", x,z,$0; }'
-  "let opts = {
-  "\ 'source':  "cscope -dL" . a:option . " " . a:query . " | awk '" . color . "'",
-  "\ 'options': ['--ansi', '--prompt', '> ',
-  "\             '--multi', '--bind', 'alt-a:select-all,alt-d:deselect-all',
-  "\             '--color', 'fg:188,fg+:222,bg+:#3a3a3a,hl+:104'],
-  "\ 'down': '40%'
-  "\ }
-  "function! opts.sink(lines) 
-    "let data = split(a:lines)
-    "let file = split(data[0], ":")
-    "execute 'e ' . '+' . file[0] . ' ' . file[0]
-  "endfunction
-  "call fzf#run(fzf#wrap(opts))
-"endfunction
 
 nnoremap <silent> <Leader>css :call Cscope('1', expand('<cword>'))<CR>
 nnoremap <silent> <Leader>csr :call Cscope('3', expand('<cword>'))<CR>
