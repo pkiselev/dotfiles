@@ -14,7 +14,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'majutsushi/tagbar'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
@@ -44,8 +44,8 @@ set rtp+=/usr/local/opt/fzf
 let g:fzf_preview_command = 'bat'
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-let b:ale_linters = {'python': ['flake8', 'pylint', 'pyls']}
-let g:ale_fixers = {'python': ['yapf', 'autopep8']}
+"let b:ale_linters = {'python': ['flake8', 'pylint', 'pyls']}
+"let g:ale_fixers = {'python': ['yapf', 'autopep8']}
 "let g:ale_completion_enabled = 1
 let g:mkdp_browser = 'safari'
 
@@ -139,6 +139,8 @@ set noswapfile
 set splitbelow
 set splitright
 set termguicolors
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum" " Fixing some weird ssh term-color problem
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum" " Fixing some weird ssh term-color problem
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
