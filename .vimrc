@@ -28,6 +28,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'voldikss/vim-floaterm'
+Plug 'mhinz/vim-startify'
+Plug 'unblevable/quick-scope'
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
