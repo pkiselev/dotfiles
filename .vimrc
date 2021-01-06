@@ -100,6 +100,11 @@ nnoremap <C-H> <C-W><C-H>
 inoremap jk <Esc>
 inoremap <Esc> <nop>
 
+:imap <C-h> <C-o>h
+:imap <C-j> <C-o>j
+:imap <C-k> <C-o>k
+:imap <C-l> <C-o>l
+
 :tnoremap et <C-\><C-n>
 
 " Plugin-specific keys
@@ -135,8 +140,8 @@ set hlsearch
 set incsearch
 set isk+=- " It is useful for searching in route-maps to incl dash
 set laststatus=2
-set cursorline
-"set cursorcolumn
+"set cursorline
+set cursorcolumn
 set noswapfile
 set splitbelow
 set splitright
