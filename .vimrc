@@ -14,10 +14,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'majutsushi/tagbar'
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'arcticicestudio/nord-vim'
+Plug 'tpope/vim-dispatch/'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 "Plug 'davidhalter/jedi-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'plasticboy/vim-markdown'
@@ -25,19 +28,28 @@ Plug 'benmills/vimux'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'voldikss/vim-floaterm'
 Plug 'mhinz/vim-startify'
 Plug 'unblevable/quick-scope'
+Plug 'jlfwong/vim-mercenary'
+Plug 'mhinz/vim-signify'
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
 "source ~/.vim/cscope_maps.vim
+source $LOCAL_ADMIN_SCRIPTS/master.vimrc
 
 
 " Plugin specific settings
-let g:airline_theme='gruvbox'
+let g:ale_completion_enabled = 1
+let g:ale_echo_msg_format = "[%linter%]%[ code]% %s"
+"let g:deoplete#enable_at_startup = 1
+set updatetime=100 " Faster reaction for vim-signify
+"let g:airline_theme='gruvbox'
+let g:airline_theme='nord'
+let g:floaterm_autoclose=1
 let g:airline_section_y="" " Disable filetype
 let g:airline_section_warning=""
 let g:airline#extensions#tabline#enabled = 1 " show open buffers
@@ -54,10 +66,10 @@ let g:mkdp_browser = 'safari'
 " Respect colorscheme for GitMessenger
 hi link gitmessengerPopupNormal Pmenu
 hi gitmessengerPopupNormal term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
-hi gitmessengerEndOfBuffer term=None guifg=None guibg=10 ctermfg=None ctermbg=None
+"hi gitmessengerEndOfBuffer term=None guifg=None guibg=10 ctermfg=None ctermbg=None
 
 " Tons of configs for CoC
-source $HOME/.config/nvim/plug-config/coc.vim
+"source $HOME/.config/nvim/plug-config/coc.vim
 
 
 
@@ -72,10 +84,10 @@ map <leader>5 :copen<CR>
 
 nnoremap <leader>B :TagbarToggle<cr>
 nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>o :Files<CR>
+"nnoremap <leader>o :Files<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>l :Lines<CR>
-nnoremap <leader>ag :Ag<CR>
+nnoremap <leader>rg :Rg<CR>
 
 cnoremap <Left> <nop>
 cnoremap <Right> <nop>
@@ -98,7 +110,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 inoremap jk <Esc>
-inoremap <Esc> <nop>
+"inoremap <Esc> <nop>
 
 :imap <C-h> <C-o>h
 :imap <C-j> <C-o>j
@@ -116,19 +128,21 @@ nmap <silent> <leader>t  :FloatermNew<cr>
 """"""""""""""""""""""
 " Settings
 """"""""""""""""""""""
-colorscheme gruvbox
+set t_Co=256
+"colorscheme gruvbox
+colorscheme nord
 set bg=dark " Specifically for gruvbox I prefer dark bg
 syntax on
 filetype on
 set tags+=tags;/
-set ts=8 et sw=4 sts=4 " Will use python-like settings by default
-set number relativenumber
-set textwidth=79
+set ts=2 et sw=2 sts=2 tw=79 " Will use python-like settings by default
+set autoindent
 set colorcolumn=80
+set backspace=indent,eol,start
+set number relativenumber
 set nowrap
 set undofile
 set undodir=~/.vim_undodir " Persistent undo
-set autoindent
 set mouse=a
 set foldcolumn=0 "Dont want too wide margins
 set foldmethod=indent
@@ -140,7 +154,7 @@ set hlsearch
 set incsearch
 set isk+=- " It is useful for searching in route-maps to incl dash
 set laststatus=2
-"set cursorline
+set cursorline
 set cursorcolumn
 set noswapfile
 set splitbelow
@@ -148,7 +162,6 @@ set splitright
 set termguicolors
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum" " Fixing some weird ssh term-color problem
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum" " Fixing some weird ssh term-color problem
-hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 
