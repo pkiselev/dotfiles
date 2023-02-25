@@ -35,11 +35,14 @@ Plug 'mhinz/vim-startify'
 Plug 'unblevable/quick-scope'
 Plug 'jlfwong/vim-mercenary'
 Plug 'mhinz/vim-signify'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
 "source ~/.vim/cscope_maps.vim
-source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+"source $LOCAL_ADMIN_SCRIPTS/master.vimrc
 
 
 " Plugin specific settings
@@ -47,8 +50,8 @@ let g:ale_completion_enabled = 1
 let g:ale_echo_msg_format = "[%linter%]%[ code]% %s"
 "let g:deoplete#enable_at_startup = 1
 set updatetime=100 " Faster reaction for vim-signify
-"let g:airline_theme='gruvbox'
-let g:airline_theme='nord'
+let g:airline_theme='gruvbox'
+"let g:airline_theme='nord'
 let g:floaterm_autoclose=1
 let g:airline_section_y="" " Disable filetype
 let g:airline_section_warning=""
@@ -88,6 +91,7 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>l :Lines<CR>
 nnoremap <leader>rg :Rg<CR>
+nnoremap <leader>o :Files<CR>
 
 cnoremap <Left> <nop>
 cnoremap <Right> <nop>
@@ -129,8 +133,8 @@ nmap <silent> <leader>t  :FloatermNew<cr>
 " Settings
 """"""""""""""""""""""
 set t_Co=256
-"colorscheme gruvbox
-colorscheme nord
+colorscheme gruvbox
+"colorscheme nord
 set bg=dark " Specifically for gruvbox I prefer dark bg
 syntax on
 filetype on
