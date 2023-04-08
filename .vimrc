@@ -6,8 +6,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tomasr/molokai'
 Plug 'nvie/vim-flake8'
-Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+"Plug 'junegunn/fzf.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/goyo.vim'
@@ -35,9 +35,13 @@ Plug 'mhinz/vim-startify'
 Plug 'unblevable/quick-scope'
 Plug 'jlfwong/vim-mercenary'
 Plug 'mhinz/vim-signify'
-Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/vim-lsp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'mattn/vim-lsp-settings'
+"Plug 'mattn/vim-lsp-settings'
+Plug 'chentoast/marks.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 call plug#end()            
 filetype plugin indent on    
 filetype plugin on
@@ -85,8 +89,6 @@ map <leader>5 :copen<CR>
 "map = <C-W>+
 "map - <C-W>-
 
-nnoremap <leader>B :TagbarToggle<cr>
-nnoremap <leader>b :Buffers<cr>
 "nnoremap <leader>o :Files<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>l :Lines<CR>
@@ -166,7 +168,7 @@ set splitright
 set termguicolors
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum" " Fixing some weird ssh term-color problem
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum" " Fixing some weird ssh term-color problem
-hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
+"hi CursorColumn   cterm=NONE ctermbg=234 ctermfg=NONE
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 
 
@@ -191,3 +193,61 @@ hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 
 nnoremap <silent> <Leader>css :call Cscope('1', expand('<cword>'))<CR>
 nnoremap <silent> <Leader>csr :call Cscope('3', expand('<cword>'))<CR>
+
+
+lua << EOF
+require('telescope').setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
+}
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>o', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>ft', builtin.tags, {})
+vim.keymap.set('n', '<leader>fl', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<leader>fm', builtin.marks, {})
+
+
+require'marks'.setup {
+  -- whether to map keybinds or not. default true
+  default_mappings = true,
+  -- which builtin marks to show. default {}
+  builtin_marks = { ".", "<", ">", "^" },
+  -- whether movements cycle back to the beginning/end of buffer. default true
+  cyclic = true,
+  -- whether the shada file is updated after modifying uppercase marks. default false
+  force_write_shada = false,
+  -- how often (in ms) to redraw signs/recompute mark positions.
+  -- higher values will have better performance but may cause visual lag,
+  -- while lower values may cause performance penalties. default 150.
+  refresh_interval = 250,
+  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+  -- marks, and bookmarks.
+  -- can be either a table with all/none of the keys, or a single number, in which case
+  -- the priority applies to all marks.
+  -- default 10.
+  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  -- disables mark tracking for specific filetypes. default {}
+  excluded_filetypes = {},
+  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+  -- default virt_text is "".
+  bookmark_0 = {
+    sign = "⚑",
+    virt_text = "hello world",
+    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+    -- defaults to false.
+    annotate = false,
+  },
+  mappings = {}
+}
+
+EOF
