@@ -27,6 +27,9 @@ Plug 'unblevable/quick-scope'
 Plug 'jlfwong/vim-mercenary'
 Plug 'mhinz/vim-signify'
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'chentoast/marks.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -152,6 +155,10 @@ nnoremap <silent> <Leader>csr :call Cscope('3', expand('<cword>'))<CR>
 
 
 lua << EOF
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+
 require('telescope').setup {
   extensions = {
     fzf = {
@@ -208,6 +215,7 @@ require'marks'.setup {
 
 local lspconfig = require('lspconfig')
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.pyright.setup{}
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
