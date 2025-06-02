@@ -155,6 +155,7 @@ nnoremap <silent> <Leader>csr :call Cscope('3', expand('<cword>'))<CR>
 
 
 lua << EOF
+vim.loader.enable()
 
 require("mason").setup()
 require("mason-lspconfig").setup()
